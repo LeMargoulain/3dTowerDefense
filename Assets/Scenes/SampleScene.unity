@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 199051087}
   - component: {fileID: 199051086}
   - component: {fileID: 199051085}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,6 +578,13 @@ MonoBehaviour:
   speed: 20
   mouseSensitivity: 100
   myCameraEyes: {fileID: 396075179}
+  gravity: 9.8
+  ground: {fileID: 199051088}
+  jumpHeight: 0.02
+  groundDistance: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2091549384
 GameObject:
   m_ObjectHideFlags: 0
