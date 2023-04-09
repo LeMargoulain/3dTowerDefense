@@ -7,10 +7,11 @@ public class Player : MonoBehaviour
     // Player Movement
     public float speed = 12.5f, mouseSensitivity = 100f;
     private CharacterController myController;
-    //public Transform myCameraHead;
-    //private float cameraVerticalRotation;
+    public Transform myCameraEyes;
+    private float cameraVerticalRotation;
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         myController = GetComponent<CharacterController>();
 
     }
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        CameraMovement();
 
     }
 
@@ -31,5 +33,17 @@ public class Player : MonoBehaviour
 
         movement = movement * speed * Time.deltaTime;
         myController.Move(movement);
+    }
+
+    private void CameraMovement()
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        cameraVerticalRotation -= mouseY;
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
+
+        transform.Rotate(Vector3.up * mouseX);
+        myCameraEyes.localRotation = Quaternion.Euler(cameraVerticalRotation, 0f, 0f);
     }
 }
