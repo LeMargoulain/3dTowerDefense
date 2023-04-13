@@ -6,23 +6,25 @@ public class Projectile : MonoBehaviour
 {
     public float range = 20f;
     public float speed = 15f;
+    public float damage = 5f;
     public LayerMask enemyLayer;
-
-    private Transform enemyTarget;
+    private GameObject enemyTarget;
     private Vector3 direction;
+    private EnemyHealthSystem targetHealthSystem;
     void Start()
     {
         enemyTarget = ClosestEnemy();
-        direction = (enemyTarget.position - gameObject.transform.position).normalized;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        GoToTarget();
+        if (EnemyInGame())
+        {
+            GoToTarget();
+        }
+        else Destroy(gameObject);
     }
 
-    private Transform ClosestEnemy()
+    private GameObject ClosestEnemy()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, range, enemyLayer);
 
@@ -40,18 +42,35 @@ public class Projectile : MonoBehaviour
                 closestEnemy = collider.gameObject;
             }
         }
-        return closestEnemy.transform;
+        targetHealthSystem = closestEnemy.GetComponent<EnemyHealthSystem>();
+        return closestEnemy;
     }
 
     private void GoToTarget()
     {
-        direction = (enemyTarget.position - gameObject.transform.position).normalized;
+        if (enemyTarget == null)
+        {
+            enemyTarget = ClosestEnemy();
+            if (enemyTarget == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+        direction = (enemyTarget.transform.position - gameObject.transform.position).normalized;
         transform.position = transform.position + direction * speed * Time.deltaTime;
 
-        if (Vector3.Magnitude(enemyTarget.position - gameObject.transform.position) < 0.1f)
+        if (Vector3.Magnitude(enemyTarget.transform.position - gameObject.transform.position) < 0.1f && targetHealthSystem != null)
         {
+            targetHealthSystem.TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    private bool EnemyInGame()
+    {
+        return (GameObject.FindWithTag("Enemy") != null);
+
     }
 
 }
