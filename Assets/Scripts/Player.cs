@@ -23,9 +23,10 @@ public class Player : MonoBehaviour
     private State state;
 
     // Placing tower
-    public GameObject towerBase;
+    public TowerBase towerBase;
     private bool baseInstantiated;
-    private GameObject towerBaseInstance;
+    private TowerBase towerBaseInstance;
+    public GameObject tower;
 
     void Start()
     {
@@ -110,7 +111,9 @@ public class Player : MonoBehaviour
 
     private void PlacingTower()
     {
+
         RaycastHit hit;
+        Debug.Log(Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer));
         if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer))
         {
             if (!baseInstantiated)
@@ -121,6 +124,11 @@ public class Player : MonoBehaviour
             else
             {
                 towerBaseInstance.transform.position = hit.point;
+            }
+
+            if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding)
+            {
+                Instantiate(tower, hit.point, Quaternion.identity);
             }
         }
         else if (baseInstantiated)
@@ -134,23 +142,19 @@ public class Player : MonoBehaviour
 
     private void StateManager()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (state == State.Normal && Input.GetKeyDown(KeyCode.E))
         {
-            if (state == State.Normal)
+            state = State.Building;
+            Debug.Log("Building");
+        }
+        else if (state == State.Building && Input.GetKeyDown(KeyCode.E))
+        {
+            state = State.Normal;
+            Debug.Log("Normal");
+            if (baseInstantiated)
             {
-                state = State.Building;
-                Debug.Log("Building");
-            }
-
-            else
-            {
-                state = State.Normal;
-                Debug.Log("Normal");
-                if (baseInstantiated)
-                {
-                    Destroy(towerBaseInstance);
-                    baseInstantiated = false;
-                }
+                Destroy(towerBaseInstance.gameObject);
+                baseInstantiated = false;
             }
         }
     }

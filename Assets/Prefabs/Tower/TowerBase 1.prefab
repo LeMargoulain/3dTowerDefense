@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7289542409681114742}
   - component: {fileID: 3851560323524106689}
   - component: {fileID: 1901864390426620170}
+  - component: {fileID: 9208728964695942568}
+  - component: {fileID: 363310816679052060}
   m_Layer: 2
   m_Name: TowerBase 1
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7718566604497445496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.1455255, y: 3.6426618, z: 1.9513922}
-  m_LocalScale: {x: 3.5, y: 0.01, z: 3.5}
+  m_LocalScale: {x: 3.5, y: 0.052268, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +85,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9208728964695942568
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718566604497445496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 20, z: 1.5}
+  m_Center: {x: 0, y: 25, z: 0}
+--- !u!114 &363310816679052060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718566604497445496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892f5bd14bc94364eaeba1a0e4197ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  isColliding: 0
