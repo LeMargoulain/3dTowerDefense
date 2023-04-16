@@ -70,7 +70,6 @@ public class Projectile : MonoBehaviour
     private bool EnemyInGame()
     {
         return (GameObject.FindWithTag("Enemy") != null);
-
     }
 
 }

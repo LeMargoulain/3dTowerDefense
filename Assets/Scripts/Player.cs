@@ -17,19 +17,51 @@ public class Player : MonoBehaviour
     public float jumpHeight = 0.02f, groundDistance = 10.0f;
     public LayerMask groundLayer;
     private bool readyToJump;
+
+    //State machine
+    private enum State { Normal, Building };
+    private State state;
+
+    // Placing tower
+    public GameObject towerBase;
+    private bool baseInstantiated;
+    private GameObject towerBaseInstance;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         myController = GetComponent<CharacterController>();
+        state = State.Normal;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-        CameraMovement();
-        Jump();
+        switch (state)
+        {
+            case State.Normal:
+                PlayerMovement();
+                CameraMovement();
+                Jump();
+                StateManager();
+                break;
+            case State.Building:
+                PlayerMovement();
+                CameraMovement();
+                Jump();
+                PlacingTower();
+                StateManager();
+                break;
+            default:
+                break;
+        }
+
+
+        if (state == State.Building)
+        {
+
+        }
     }
 
     private void PlayerMovement()
@@ -75,4 +107,52 @@ public class Player : MonoBehaviour
         verticalVelocity.y += 0.5f * Physics.gravity.y * Mathf.Pow(Time.deltaTime, 2) * gravity;
         myController.Move(verticalVelocity * Time.deltaTime);
     }
+
+    private void PlacingTower()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer))
+        {
+            if (!baseInstantiated)
+            {
+                towerBaseInstance = Instantiate(towerBase, hit.point, Quaternion.identity);
+                baseInstantiated = true;
+            }
+            else
+            {
+                towerBaseInstance.transform.position = hit.point;
+            }
+        }
+        else if (baseInstantiated)
+        {
+            Destroy(towerBaseInstance);
+            baseInstantiated = false;
+        }
+
+
+    }
+
+    private void StateManager()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (state == State.Normal)
+            {
+                state = State.Building;
+                Debug.Log("Building");
+            }
+
+            else
+            {
+                state = State.Normal;
+                Debug.Log("Normal");
+                if (baseInstantiated)
+                {
+                    Destroy(towerBaseInstance);
+                    baseInstantiated = false;
+                }
+            }
+        }
+    }
+
 }
