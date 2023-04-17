@@ -27,11 +27,19 @@ public class Player : MonoBehaviour
     private TowerBase towerBaseInstance;
     public GameObject tower;
 
+    // Change Weapon
+
+    public GunSystem[] guns;
+    private GunSystem gun;
+    private int gunNumber = 0;
+    private List<GameObject> towers = new List<GameObject>();
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         myController = GetComponent<CharacterController>();
         state = State.Normal;
+        gun = guns[0];
 
     }
 
@@ -45,6 +53,7 @@ public class Player : MonoBehaviour
                 CameraMovement();
                 Jump();
                 StateManager();
+                GunManager();
                 break;
             case State.Building:
                 PlayerMovement();
@@ -120,7 +129,11 @@ public class Player : MonoBehaviour
                     towerBaseInstance.transform.position = hit.point;
                 }
 
-                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding) Instantiate(tower, hit.point, Quaternion.identity);
+                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding)
+                {
+                    towers.Add(Instantiate(tower, hit.point, Quaternion.identity));
+                }
+
             }
         }
         else if (towerBaseInstance != null) towerBaseInstance.gameObject.SetActive(false);
@@ -130,14 +143,50 @@ public class Player : MonoBehaviour
         if (state == State.Normal && Input.GetKeyDown(KeyCode.E))
         {
             state = State.Building;
+            gun.gameObject.SetActive(false);
         }
         else if (state == State.Building && Input.GetKeyDown(KeyCode.E))
         {
             state = State.Normal;
+            gun.gameObject.SetActive(true);
             if (towerBaseInstance != null)
             {
                 Destroy(towerBaseInstance.gameObject);
                 towerBaseInstance = null;
+            }
+        }
+    }
+
+    private void GunManager()
+    {
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            gunNumber++;
+            gun.gameObject.SetActive(false);
+            if (gunNumber >= guns.Length)
+            {
+                gunNumber = 0;
+            }
+            gun = guns[gunNumber];
+            gun.gameObject.SetActive(true);
+            foreach (GameObject tower in towers)
+            {
+                tower.GetComponent<Tower>().ChangeProjectile(gunNumber);
+            }
+        }
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            gunNumber--;
+            gun.gameObject.SetActive(false);
+            if (gunNumber < 0)
+            {
+                gunNumber = guns.Length - 1;
+            }
+            gun = guns[gunNumber];
+            gun.gameObject.SetActive(true);
+            foreach (GameObject tower in towers)
+            {
+                tower.GetComponent<Tower>().ChangeProjectile(gunNumber);
             }
         }
     }

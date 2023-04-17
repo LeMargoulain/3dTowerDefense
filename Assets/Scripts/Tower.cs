@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Projectile projectile;
+    private Projectile projectile;
     public float delayBetweenShot = 1f;
     public Transform firingPosition;
     public LayerMask enemyLayer;
     public bool isShooting;
 
+    public Projectile[] projectiles;
+
     void Start()
     {
+        projectile = projectiles[0];
         isShooting = false;
     }
 
@@ -25,9 +28,9 @@ public class Tower : MonoBehaviour
 
     }
 
-    public void ChangeProjectile(Projectile newProjectile)
+    public void ChangeProjectile(int newProjectileIndex)
     {
-        projectile = newProjectile;
+        projectile = projectiles[newProjectileIndex];
     }
 
     private void OnDrawGizmosSelected()
