@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
 
     // Placing tower
     public TowerBase towerBase;
-    private bool baseInstantiated;
     private TowerBase towerBaseInstance;
     public GameObject tower;
 
@@ -100,7 +99,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            Debug.Log("Jump");
             verticalVelocity.y = Mathf.Sqrt(-2 * jumpHeight * Physics.gravity.y);
         }
 
@@ -111,50 +109,35 @@ public class Player : MonoBehaviour
 
     private void PlacingTower()
     {
-
         RaycastHit hit;
-        Debug.Log(Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer));
-        if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer))
+        if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer) && hit.collider.CompareTag("Ground"))
         {
-            if (!baseInstantiated)
             {
-                towerBaseInstance = Instantiate(towerBase, hit.point, Quaternion.identity);
-                baseInstantiated = true;
-            }
-            else
-            {
-                towerBaseInstance.transform.position = hit.point;
-            }
+                if (towerBaseInstance == null) towerBaseInstance = Instantiate(towerBase, hit.point, Quaternion.identity);
+                else
+                {
+                    towerBaseInstance.gameObject.SetActive(true);
+                    towerBaseInstance.transform.position = hit.point;
+                }
 
-            if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding)
-            {
-                Instantiate(tower, hit.point, Quaternion.identity);
+                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding) Instantiate(tower, hit.point, Quaternion.identity);
             }
         }
-        else if (baseInstantiated)
-        {
-            Destroy(towerBaseInstance);
-            baseInstantiated = false;
-        }
-
-
+        else if (towerBaseInstance != null) towerBaseInstance.gameObject.SetActive(false);
     }
-
     private void StateManager()
     {
         if (state == State.Normal && Input.GetKeyDown(KeyCode.E))
         {
             state = State.Building;
-            Debug.Log("Building");
         }
         else if (state == State.Building && Input.GetKeyDown(KeyCode.E))
         {
             state = State.Normal;
-            Debug.Log("Normal");
-            if (baseInstantiated)
+            if (towerBaseInstance != null)
             {
                 Destroy(towerBaseInstance.gameObject);
-                baseInstantiated = false;
+                towerBaseInstance = null;
             }
         }
     }
