@@ -24,12 +24,12 @@ public class GameManager : MonoBehaviour
         myUI.moneyText.SetText(money.ToString());
     }
 
-    public int getMoney()
+    public static int getMoney()
     {
         return money;
     }
 
-    public void RemoveMoney(int moneyToRemove)
+    public static void RemoveMoney(int moneyToRemove)
     {
         money -= moneyToRemove;
         myUI.moneyText.SetText(money.ToString());

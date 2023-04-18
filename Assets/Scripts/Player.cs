@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public TowerBase towerBase;
     private TowerBase towerBaseInstance;
     public GameObject tower;
+    public static int towerCost = 100;
 
     // Change Weapon
 
@@ -129,9 +130,10 @@ public class Player : MonoBehaviour
                     towerBaseInstance.transform.position = hit.point;
                 }
 
-                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding)
+                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding && GameManager.getMoney() >= towerCost)
                 {
                     towers.Add(Instantiate(tower, hit.point, Quaternion.identity));
+                    GameManager.RemoveMoney(towerCost);
                 }
 
             }
@@ -190,5 +192,6 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 
 }

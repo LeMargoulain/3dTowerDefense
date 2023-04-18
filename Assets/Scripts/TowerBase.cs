@@ -12,11 +12,19 @@ public class TowerBase : MonoBehaviour
     {
         towerbaserenderer = GetComponent<Renderer>();
         originalColor = towerbaserenderer.material.color;
+        if (GameManager.getMoney() < Player.towerCost)
+        {
+            towerbaserenderer.sharedMaterial.color = Color.red;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.getMoney() >= Player.towerCost && !isColliding)
+        {
+            towerbaserenderer.sharedMaterial.color = originalColor;
+        }
     }
 
 
@@ -24,7 +32,7 @@ public class TowerBase : MonoBehaviour
     {
         if (other.gameObject.layer != groundLayer)
         {
-            Debug.Log("trigger");
+            Debug.Log("Trigger stay: " + other.gameObject.name);
             isColliding = true;
             towerbaserenderer.sharedMaterial.color = Color.red;
         }
@@ -35,7 +43,10 @@ public class TowerBase : MonoBehaviour
         if (other.gameObject.layer != groundLayer)
         {
             isColliding = false;
-            towerbaserenderer.sharedMaterial.color = originalColor;
+            if (GameManager.getMoney() > Player.towerCost)
+            {
+                towerbaserenderer.sharedMaterial.color = originalColor;
+            }
         }
     }
 }
