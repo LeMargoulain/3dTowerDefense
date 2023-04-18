@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Transform spawn;
+
     public Wave[] waves;
     public float timeBetweenWaves;
 
