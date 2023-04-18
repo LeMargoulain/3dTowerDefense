@@ -23,7 +23,7 @@ public class EnemyHealthSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            GameManager.AddMoney(50);
+            GameManager.AddMoney(5);
         }
     }
 }

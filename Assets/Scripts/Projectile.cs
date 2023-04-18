@@ -59,17 +59,21 @@ public class Projectile : MonoBehaviour
         }
         direction = (enemyTarget.transform.position - gameObject.transform.position).normalized;
         transform.position = transform.position + direction * speed * Time.deltaTime;
-
-        if (Vector3.Magnitude(enemyTarget.transform.position - gameObject.transform.position) < 0.1f && targetHealthSystem != null)
-        {
-            targetHealthSystem.TakeDamage(damage);
-            Destroy(gameObject);
-        }
     }
 
     private bool EnemyInGame()
     {
         return (GameObject.FindWithTag("Enemy") != null);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Projectile Enter Trigger");
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            targetHealthSystem.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 
 }

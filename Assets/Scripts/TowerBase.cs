@@ -32,7 +32,6 @@ public class TowerBase : MonoBehaviour
     {
         if (other.gameObject.layer != groundLayer)
         {
-            Debug.Log("Trigger stay: " + other.gameObject.name);
             isColliding = true;
             towerbaserenderer.sharedMaterial.color = Color.red;
         }
