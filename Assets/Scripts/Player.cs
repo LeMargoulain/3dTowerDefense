@@ -142,12 +142,12 @@ public class Player : MonoBehaviour
     }
     private void StateManager()
     {
-        if (state == State.Normal && Input.GetKeyDown(KeyCode.E))
+        if (state == State.Normal && Input.GetKeyDown(KeyCode.E) && !Input.GetMouseButton(0))
         {
             state = State.Building;
             gun.gameObject.SetActive(false);
         }
-        else if (state == State.Building && Input.GetKeyDown(KeyCode.E))
+        else if (state == State.Building && Input.GetKeyDown(KeyCode.E) && !Input.GetMouseButton(0))
         {
             state = State.Normal;
             gun.gameObject.SetActive(true);
@@ -191,6 +191,11 @@ public class Player : MonoBehaviour
                 tower.GetComponent<Tower>().ChangeProjectile(gunNumber);
             }
         }
+    }
+
+    IEnumerator SwitchTimer()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
 

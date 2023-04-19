@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public static void RemoveMoney(int moneyToRemove)
     {
-        money -= moneyToRemove;
+        // money -= moneyToRemove;
         myUI.moneyText.SetText(money.ToString());
     }
 }

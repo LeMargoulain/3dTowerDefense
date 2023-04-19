@@ -1459,15 +1459,29 @@ MonoBehaviour:
   - monsters:
     - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
     - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
-    spawnInterval: 2
-    monsterCount: 2
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    spawnInterval: 1
+    monsterCount: 10
   - monsters:
     - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
     - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
     - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
     - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
-    spawnInterval: 2
-    monsterCount: 4
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    - {fileID: 3037443760172174980, guid: 8a58505056ce26f4880aec21e631540b, type: 3}
+    spawnInterval: 0.5
+    monsterCount: 10
   timeBetweenWaves: 5
 --- !u!4 &2048251182
 Transform:
