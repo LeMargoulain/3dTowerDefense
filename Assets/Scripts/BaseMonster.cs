@@ -20,7 +20,9 @@ public class BaseMonster : MonoBehaviour
         remainingDistance = Vector3.Distance(transform.position, target.position);
         if (remainingDistance < 5f)
         {
+            GameManager.DamagePlayer();
             Destroy(gameObject);
+
         }
     }
 

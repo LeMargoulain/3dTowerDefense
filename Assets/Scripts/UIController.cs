@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
     public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI hpText;
+    public GameObject panel;
     void Start()
     {
 
@@ -16,6 +19,13 @@ public class UIController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }
