@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnWave(Wave wave)
     {
-        for (int i = 0; i < wave.monsterCount; i++)
+        for (int i = 0; i < wave.monsters.Length; i++)
         {
             Instantiate(wave.monsters[i], spawn.position, spawn.rotation);
             yield return new WaitForSeconds(wave.spawnInterval);
