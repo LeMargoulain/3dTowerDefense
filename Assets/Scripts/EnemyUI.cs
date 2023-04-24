@@ -26,6 +26,5 @@ public class EnemyUI : MonoBehaviour
     public void SetHealth(float health)
     {
         healthSlider.value = health;
-        Debug.Log(healthSlider.value);
     }
 }

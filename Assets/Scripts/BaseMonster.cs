@@ -5,13 +5,14 @@ using UnityEngine.AI;
 
 public class BaseMonster : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
     private NavMeshAgent agent;
     private float remainingDistance;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Target").transform;
         agent.destination = target.position;
     }
 
