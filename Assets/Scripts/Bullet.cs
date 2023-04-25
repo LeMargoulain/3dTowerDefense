@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
-        Destroy(gameObject, bulletLife);
+        Destroy(transform.parent.gameObject, bulletLife);
     }
 
 
@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     /* private IEnumerator DestroyBulletTime()
