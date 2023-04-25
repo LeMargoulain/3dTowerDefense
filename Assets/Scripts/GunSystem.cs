@@ -9,6 +9,7 @@ public class GunSystem : MonoBehaviour
     public Transform myCameraEyes;
     public float timeBetweenShot = 0.2f, gunDamage = 1f;
     private bool readyToShoot = true;
+    public GameObject muzzleFlash;
     void Start()
     {
 
@@ -38,6 +39,7 @@ public class GunSystem : MonoBehaviour
                 firingPosition.LookAt(targetPosition);
             }
             Instantiate(projectile, firingPosition.position, firingPosition.rotation);
+            Instantiate(muzzleFlash, firingPosition.position, firingPosition.rotation);
             StartCoroutine(ResetShot());
         }
     }
