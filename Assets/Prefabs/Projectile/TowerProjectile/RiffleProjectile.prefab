@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f63f03b33fbd844e82fbb6ac953f2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 50
+  range: 100
   speed: 20
   damage: 5
   enemyLayer:

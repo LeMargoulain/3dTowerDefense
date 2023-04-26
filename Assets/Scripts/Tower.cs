@@ -33,16 +33,17 @@ public class Tower : MonoBehaviour
         projectile = projectiles[newProjectileIndex];
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(firingPosition.position, projectile.range);
-    }
+    }*/
 
     private IEnumerator Shoot()
     {
         isShooting = true;
         Instantiate(projectile, firingPosition);
+        Debug.Log("shot");
         yield return new WaitForSeconds(delayBetweenShot);
         isShooting = false;
     }
