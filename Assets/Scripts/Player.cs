@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     public GunSystem[] guns;
     private GunSystem gun;
-    private int gunNumber = 0;
+    private static int gunNumber = 0;
     private List<GameObject> towers = new List<GameObject>();
 
     void Start()
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 
     private void GunManager()
     {
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y < 0)
         {
             gunNumber++;
             gun.gameObject.SetActive(false);
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
                 tower.GetComponent<Tower>().ChangeProjectile(gunNumber);
             }
         }
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y > 0)
         {
             gunNumber--;
             gun.gameObject.SetActive(false);
@@ -200,5 +200,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-
+    public static int GetGunNumber()
+    {
+        return gunNumber;
+    }
 }

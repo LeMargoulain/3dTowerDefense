@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float range = 20f;
     public float speed = 15f;
     public float damage = 5f;
+    public float delay;
     public LayerMask enemyLayer;
     private GameObject enemyTarget;
     private Vector3 direction;
@@ -74,6 +75,12 @@ public class Projectile : MonoBehaviour
             targetHealthSystem.TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 
 }
