@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private GameObject ClosestEnemy()
+    public GameObject ClosestEnemy()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, range, enemyLayer);
 

@@ -10,8 +10,11 @@ public class Tower : MonoBehaviour
     public LayerMask enemyLayer;
     public bool isShooting;
     private bool enemyInRange;
+    public GameObject hooverObject;
 
     public Projectile[] projectiles;
+
+    private GameObject currentTarget;
 
     void Start()
     {
@@ -23,6 +26,15 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentTarget = projectile.ClosestEnemy();
+        if (currentTarget != null)
+        {
+            Vector3 direction = currentTarget.transform.position - hooverObject.transform.position;
+            direction.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            float smoothSpeed = 20f; // adjust this value to control the speed of the rotation
+            hooverObject.transform.rotation = Quaternion.Lerp(hooverObject.transform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
+        }
         IsEnemyInRange();
         if (enemyInRange && !isShooting)
         {
@@ -55,5 +67,6 @@ public class Tower : MonoBehaviour
     {
         projectile = projectiles[index];
     }
+
 
 }
