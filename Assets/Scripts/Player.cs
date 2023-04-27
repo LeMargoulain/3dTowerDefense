@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         myController.Move(verticalVelocity * Time.deltaTime);
     }
 
-    private void PlacingTower()
+    /*private void PlacingTower()
     {
         RaycastHit hit;
         if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer) && hit.collider.CompareTag("Ground"))
@@ -139,7 +139,38 @@ public class Player : MonoBehaviour
             }
         }
         else if (towerBaseInstance != null) towerBaseInstance.gameObject.SetActive(false);
+    }*/
+
+    private void PlacingTower()
+    {
+        float maxSlopeAngle = 25f;
+        RaycastHit hit;
+        // Cast a ray downwards from the camera to find the ground
+        if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer) && hit.collider.CompareTag("Ground"))
+        {
+            Vector3 towerPosition = hit.point;
+
+            // Check if the angle between the ground normal and the up direction is within an acceptable range
+            if (Vector3.Angle(hit.normal, Vector3.up) < maxSlopeAngle)
+            {
+                if (towerBaseInstance == null) towerBaseInstance = Instantiate(towerBase, towerPosition, Quaternion.identity);
+                else
+                {
+                    towerBaseInstance.gameObject.SetActive(true);
+                    towerBaseInstance.transform.position = towerPosition;
+                }
+
+                // Check if the mouse button is pressed and the tower base is not colliding with any other objects
+                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding && GameManager.getMoney() >= towerCost)
+                {
+                    towers.Add(Instantiate(tower, towerPosition, Quaternion.identity));
+                    GameManager.RemoveMoney(towerCost);
+                }
+            }
+        }
+        else if (towerBaseInstance != null) towerBaseInstance.gameObject.SetActive(false);
     }
+
     private void StateManager()
     {
         if (state == State.Normal && Input.GetKeyDown(KeyCode.E) && !Input.GetMouseButton(0))
