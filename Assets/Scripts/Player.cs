@@ -171,6 +171,7 @@ public class Player : MonoBehaviour
             }
             gun = guns[gunNumber];
             gun.gameObject.SetActive(true);
+            gun.SetReadyToShoot(true);
             foreach (GameObject tower in towers)
             {
                 tower.GetComponent<Tower>().ChangeProjectile(gunNumber);
@@ -186,6 +187,7 @@ public class Player : MonoBehaviour
             }
             gun = guns[gunNumber];
             gun.gameObject.SetActive(true);
+            gun.SetReadyToShoot(true);
             foreach (GameObject tower in towers)
             {
                 tower.GetComponent<Tower>().ChangeProjectile(gunNumber);

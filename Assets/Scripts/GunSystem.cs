@@ -17,6 +17,7 @@ public class GunSystem : MonoBehaviour
     void Update()
     {
         Shoot();
+        Debug.Log(readyToShoot);
     }
 
     private void Shoot()
@@ -48,5 +49,10 @@ public class GunSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenShot);
         readyToShoot = true;
+    }
+
+    public void SetReadyToShoot(bool set)
+    {
+        readyToShoot = set;
     }
 }
