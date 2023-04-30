@@ -11,7 +11,9 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI hpText;
     public GameObject panel;
     public GameObject welcomeMessage;
-    private bool help = true;
+    private bool help = false;
+    public TextMeshProUGUI waveNumber;
+    public TextMeshProUGUI monsterRemaining;
     void Start()
     {
         Debug.Log(help);

@@ -8,9 +8,11 @@ public class BaseMonster : MonoBehaviour
     private Transform target;
     private NavMeshAgent agent;
     private float remainingDistance;
+    private Spawner mySpawner;
 
     void Start()
     {
+        mySpawner = FindObjectOfType<Spawner>();
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Target").transform;
         agent.destination = target.position;
@@ -22,6 +24,7 @@ public class BaseMonster : MonoBehaviour
         if (remainingDistance < 5f)
         {
             GameManager.DamagePlayer();
+            mySpawner.OnMonsterDestroyed();
             Destroy(gameObject);
 
         }

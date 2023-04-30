@@ -8,11 +8,13 @@ public class EnemyHealthSystem : MonoBehaviour
     private float currentHealth;
 
     EnemyUI healthBar;
+    private Spawner mySpawner;
     void Start()
     {
         currentHealth = maxHealth;
         healthBar = GetComponentInChildren<EnemyUI>();
         healthBar.SetMaxHealth(maxHealth);
+        mySpawner = FindObjectOfType<Spawner>();
     }
 
     void Update()
@@ -26,6 +28,7 @@ public class EnemyHealthSystem : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
+            mySpawner.OnMonsterDestroyed();
             Destroy(gameObject);
             GameManager.AddMoney(5);
 

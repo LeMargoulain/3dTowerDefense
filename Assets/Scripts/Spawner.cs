@@ -9,10 +9,17 @@ public class Spawner : MonoBehaviour
     private int activeMonsters = 0;
     private int currentWaveIndex = 0;
     private bool waitingForInput = true;
+    private static UIController myUI;
 
+    void Start()
+    {
+        myUI = FindObjectOfType<UIController>();
+        myUI.waveNumber.SetText("Vague 0");
+        myUI.monsterRemaining.SetText("Monstres restant: 0");
+    }
     void Update()
     {
-        Debug.Log(waitingForInput);
+        Debug.Log(activeMonsters);
         if (waitingForInput && Input.GetKeyDown(KeyCode.R))
         {
             waitingForInput = false;
@@ -26,7 +33,7 @@ public class Spawner : MonoBehaviour
         {
             Wave wave = waves[currentWaveIndex];
             currentWaveIndex++;
-
+            myUI.waveNumber.SetText("Vague " + currentWaveIndex);
             StartCoroutine(SpawnWave(wave));
         }
     }
@@ -39,6 +46,7 @@ public class Spawner : MonoBehaviour
         {
             Instantiate(wave.monsters[i], spawn.position, spawn.rotation);
             activeMonsters++;
+            myUI.monsterRemaining.SetText("Monstres restant: " + activeMonsters);
             yield return new WaitForSeconds(wave.spawnInterval);
         }
 
@@ -52,7 +60,9 @@ public class Spawner : MonoBehaviour
 
     public void OnMonsterDestroyed()
     {
+        Debug.Log("yep");
         activeMonsters--;
+        myUI.monsterRemaining.SetText("Monstres restant: " + activeMonsters);
     }
 }
 
