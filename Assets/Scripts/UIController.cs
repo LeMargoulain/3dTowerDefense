@@ -10,14 +10,30 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI hpText;
     public GameObject panel;
+    public GameObject welcomeMessage;
+    private bool help = true;
     void Start()
     {
-
+        Debug.Log(help);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (help)
+            {
+                welcomeMessage.SetActive(false);
+                help = false;
+            }
+            else
+            {
+                welcomeMessage.SetActive(true);
+                help = true;
+            }
+        }
+
 
     }
 
