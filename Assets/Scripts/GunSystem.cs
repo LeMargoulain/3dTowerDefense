@@ -17,7 +17,6 @@ public class GunSystem : MonoBehaviour
     void Update()
     {
         Shoot();
-        Debug.Log(readyToShoot);
     }
 
     private void Shoot()
