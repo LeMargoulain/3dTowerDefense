@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
-  speed: 15
+  speed: 30
   damage: 20
-  delay: 4
+  delay: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

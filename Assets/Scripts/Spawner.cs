@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public Transform spawn;
     public Wave[] waves;
-    private int activeMonsters = 0;
+    private static int activeMonsters = 0;
     private int currentWaveIndex = 0;
     private bool waitingForInput = true;
     private static UIController myUI;
@@ -70,6 +70,11 @@ public class Spawner : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public static void AddMonster()
+    {
+        activeMonsters++;
     }
 }
 

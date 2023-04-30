@@ -5036,9 +5036,44 @@ MonoBehaviour:
   spawn: {fileID: 354796163}
   waves:
   - monsters:
+    - {fileID: 4924879223187932578, guid: 47fd803c1e592e84aad0f9c58084f7f0, type: 3}
+    spawnInterval: 1
+  - monsters:
     - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
     - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
-    spawnInterval: 2
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    - {fileID: 712438347299911040, guid: c727f02295900384d9e195219d1de7f8, type: 3}
+    spawnInterval: 1
+  - monsters:
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    spawnInterval: 1
+  - monsters:
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    - {fileID: 8957148869974073243, guid: c6291d519f2826248a87f234b8dbd0ac, type: 3}
+    spawnInterval: 1
 --- !u!4 &2048251182
 Transform:
   m_ObjectHideFlags: 0

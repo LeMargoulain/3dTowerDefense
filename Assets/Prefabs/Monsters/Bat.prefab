@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae929ceedccffe0448fe8c029d4d76a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 20
 --- !u!195 &3189563618383267988
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 14
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1643,7 +1643,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5599517414672477705}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 0b889ed5ad602e44f897721ddc9ef3ef, type: 2}
   m_Controller: {fileID: 9100000, guid: 04a2b9dbfe52c3e4ab8cf069878a90b1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
