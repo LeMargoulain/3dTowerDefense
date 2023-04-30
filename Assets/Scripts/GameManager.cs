@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         myUI.moneyText.SetText(money.ToString());
         myUI.hpText.SetText(hp.ToString());
         myUI.panel.SetActive(false);
+        myUI.win.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public static void RemoveMoney(int moneyToRemove)
     {
-        //money -= moneyToRemove;
+        money -= moneyToRemove;
         myUI.moneyText.SetText(money.ToString());
     }
 

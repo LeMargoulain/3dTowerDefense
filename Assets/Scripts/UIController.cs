@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     private bool help = false;
     public TextMeshProUGUI waveNumber;
     public TextMeshProUGUI monsterRemaining;
+    public GameObject win;
     void Start()
     {
         Debug.Log(help);
@@ -44,6 +45,12 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("quitter");
+        Application.Quit();
     }
 
 }

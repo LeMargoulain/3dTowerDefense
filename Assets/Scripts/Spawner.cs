@@ -55,6 +55,7 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
         }
+
     }
 
 
@@ -63,6 +64,12 @@ public class Spawner : MonoBehaviour
         Debug.Log("yep");
         activeMonsters--;
         myUI.monsterRemaining.SetText("Monstres restant: " + activeMonsters);
+        if (activeMonsters == 0 && currentWaveIndex == waves.Length)
+        {
+            myUI.win.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
 
