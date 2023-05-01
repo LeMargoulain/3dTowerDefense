@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private static UIController myUI;
     void Start()
     {
+        money = 100;
+        hp = 10;
         myUI = FindObjectOfType<UIController>();
         myUI.moneyText.SetText(money.ToString());
         myUI.hpText.SetText(hp.ToString());
@@ -19,7 +21,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public static void AddMoney(int moneyToAdd)
@@ -49,5 +50,10 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public static int GetMonsterNumber()
+    {
+        return GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 }

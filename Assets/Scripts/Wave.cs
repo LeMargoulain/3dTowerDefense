@@ -7,6 +7,13 @@ public class Wave
 {
     public GameObject[] monsters;
     public float spawnInterval;
+    private int monsterInWave = 0;
+
+    void Start()
+    {
+
+        Debug.Log(monsterInWave);
+    }
 
     public Wave(GameObject[] monsters, float spawnInterval, int monsterCount)
     {
@@ -14,5 +21,17 @@ public class Wave
         this.spawnInterval = spawnInterval;
     }
 
+    public int MonsterNumberInWave()
+    {
+        foreach (GameObject monster in monsters)
+        {
+            if (monster.GetComponent<SlimeDivision>() != null)
+            {
+                monsterInWave += 3;
+            }
+            else monsterInWave += 1;
+        }
+        return monsterInWave;
+    }
 
 }

@@ -6,20 +6,21 @@ public class Spawner : MonoBehaviour
 {
     public Transform spawn;
     public Wave[] waves;
-    private static int activeMonsters = 0;
     private int currentWaveIndex = 0;
+    private int currentMonsterIndex = 0;
     private bool waitingForInput = true;
+    private int remainingMonsters = 0;
     private static UIController myUI;
 
     void Start()
     {
         myUI = FindObjectOfType<UIController>();
-        myUI.waveNumber.SetText("Vague 0");
-        myUI.monsterRemaining.SetText("Monstres restant: 0");
+        myUI.waveNumber.SetText("Vague 0/" + waves.Length);
+        myUI.monsterRemaining.SetText("Monstres restant:" + GameManager.GetMonsterNumber());
     }
     void Update()
     {
-        Debug.Log(activeMonsters);
+        myUI.monsterRemaining.SetText("Monstres restant: " + remainingMonsters);
         if (waitingForInput && Input.GetKeyDown(KeyCode.R))
         {
             waitingForInput = false;
@@ -32,8 +33,10 @@ public class Spawner : MonoBehaviour
         if (currentWaveIndex < waves.Length)
         {
             Wave wave = waves[currentWaveIndex];
+            remainingMonsters = waves[currentWaveIndex].MonsterNumberInWave();
             currentWaveIndex++;
-            myUI.waveNumber.SetText("Vague " + currentWaveIndex);
+            myUI.waveNumber.SetText("Vague " + currentWaveIndex + "/" + waves.Length);
+            currentMonsterIndex = 0;
             StartCoroutine(SpawnWave(wave));
         }
     }
@@ -41,17 +44,16 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnWave(Wave wave)
     {
         yield return new WaitUntil(() => !waitingForInput);
-
         for (int i = 0; i < wave.monsters.Length; i++)
         {
+            currentMonsterIndex++;
             Instantiate(wave.monsters[i], spawn.position, spawn.rotation);
-            activeMonsters++;
-            myUI.monsterRemaining.SetText("Monstres restant: " + activeMonsters);
+            //myUI.monsterRemaining.SetText("Monstres restant: " + GameObject.FindGameObjectsWithTag("Enemy").Length);
             yield return new WaitForSeconds(wave.spawnInterval);
         }
 
         waitingForInput = true;
-        while (activeMonsters > 0)
+        while (GameManager.GetMonsterNumber() > 0)
         {
             yield return null;
         }
@@ -61,10 +63,9 @@ public class Spawner : MonoBehaviour
 
     public void OnMonsterDestroyed()
     {
-        Debug.Log("yep");
-        activeMonsters--;
-        myUI.monsterRemaining.SetText("Monstres restant: " + activeMonsters);
-        if (activeMonsters == 0 && currentWaveIndex == waves.Length)
+        Debug.Log(GameManager.GetMonsterNumber());
+        if (remainingMonsters > 0) remainingMonsters--;
+        if (currentWaveIndex == waves.Length && remainingMonsters == 0 && GameManager.GetMonsterNumber() - 1 <= 0)
         {
             myUI.win.SetActive(true);
             Time.timeScale = 0f;
@@ -72,10 +73,6 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public static void AddMonster()
-    {
-        activeMonsters++;
-    }
 }
 
 

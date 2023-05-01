@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f63f03b33fbd844e82fbb6ac953f2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
+  range: 25
   speed: 40
-  damage: 2
-  delay: 0.3
+  damage: 6
+  delay: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

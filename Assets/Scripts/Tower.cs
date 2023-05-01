@@ -53,7 +53,6 @@ public class Tower : MonoBehaviour
     {
         isShooting = true;
         Instantiate(projectile, firingPosition);
-        Debug.Log("shot");
         yield return new WaitForSeconds(delayBetweenShot);
         isShooting = false;
     }

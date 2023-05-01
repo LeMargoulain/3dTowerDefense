@@ -21,8 +21,10 @@ public class EnemyHealthSystem : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    public IEnumerator TakeDamage(float damage)
     {
+        // introduce a delay of 0.5 seconds
+
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
@@ -34,8 +36,9 @@ public class EnemyHealthSystem : MonoBehaviour
             }
             mySpawner.OnMonsterDestroyed();
             Destroy(gameObject);
-            GameManager.AddMoney(15);
-
+            GameManager.AddMoney(10);
         }
+        yield return new WaitForSeconds(0.05f);
     }
 }
+

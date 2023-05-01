@@ -64,15 +64,14 @@ public class Projectile : MonoBehaviour
 
     private bool EnemyInGame()
     {
-        return (GameObject.FindWithTag("Enemy") != null);
+        return (GameManager.GetMonsterNumber() != 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Projectile Enter Trigger");
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && targetHealthSystem != null)
         {
-            targetHealthSystem.TakeDamage(damage);
+            targetHealthSystem.StartCoroutine("TakeDamage", damage);
             Destroy(gameObject);
         }
     }

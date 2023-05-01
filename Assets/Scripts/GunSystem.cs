@@ -29,7 +29,7 @@ public class GunSystem : MonoBehaviour
             {
                 if (hit.collider.tag.Equals("Enemy"))
                 {
-                    hit.collider.GetComponent<EnemyHealthSystem>().TakeDamage(gunDamage);
+                    hit.collider.GetComponent<EnemyHealthSystem>().StartCoroutine("TakeDamage", gunDamage);
                 }
                 firingPosition.LookAt(hit.point);
             }
