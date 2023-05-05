@@ -116,31 +116,6 @@ public class Player : MonoBehaviour
         verticalVelocity.y += 0.5f * Physics.gravity.y * Mathf.Pow(Time.deltaTime, 2) * gravity;
         myController.Move(verticalVelocity * Time.deltaTime);
     }
-
-    /*private void PlacingTower()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer) && hit.collider.CompareTag("Ground"))
-        {
-            {
-                if (towerBaseInstance == null) towerBaseInstance = Instantiate(towerBase, hit.point, Quaternion.identity);
-                else
-                {
-                    towerBaseInstance.gameObject.SetActive(true);
-                    towerBaseInstance.transform.position = hit.point;
-                }
-
-                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding && GameManager.getMoney() >= towerCost)
-                {
-                    towers.Add(Instantiate(tower, hit.point, Quaternion.identity));
-                    GameManager.RemoveMoney(towerCost);
-                }
-
-            }
-        }
-        else if (towerBaseInstance != null) towerBaseInstance.gameObject.SetActive(false);
-    }*/
-
     private void PlacingTower()
     {
         float maxSlopeAngle = 25f;
@@ -149,8 +124,6 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(myCameraEyes.position, myCameraEyes.forward, out hit, groundLayer) && hit.collider.CompareTag("Ground"))
         {
             Vector3 towerPosition = hit.point;
-
-            // Check if the angle between the ground normal and the up direction is within an acceptable range
             if (Vector3.Angle(hit.normal, Vector3.up) < maxSlopeAngle)
             {
                 if (towerBaseInstance == null) towerBaseInstance = Instantiate(towerBase, towerPosition, Quaternion.identity);
@@ -160,17 +133,15 @@ public class Player : MonoBehaviour
                     towerBaseInstance.transform.position = towerPosition;
                 }
 
-                // Check if the mouse button is pressed and the tower base is not colliding with any other objects
-                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding && GameManager.getMoney() >= towerCost)
+                if (Input.GetMouseButtonDown(0) && !towerBaseInstance.isColliding && GameManager.getMoney() >= towerCost && towerBaseInstance != null)
                 {
-                    towers.Add(Instantiate(tower, towerPosition, Quaternion.identity));
+                    towers.Add(Instantiate(tower, towerBaseInstance.transform.position + Vector3.up * 0.5f, Quaternion.identity));
                     GameManager.RemoveMoney(towerCost);
                 }
             }
         }
         else if (towerBaseInstance != null) towerBaseInstance.gameObject.SetActive(false);
     }
-
     private void StateManager()
     {
         if (state == State.Normal && Input.GetKeyDown(KeyCode.E) && !Input.GetMouseButton(0))
@@ -225,12 +196,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    IEnumerator SwitchTimer()
-    {
-        yield return new WaitForSeconds(0.5f);
-    }
-
     public static int GetGunNumber()
     {
         return gunNumber;
