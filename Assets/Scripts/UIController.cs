@@ -15,6 +15,11 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI waveNumber;
     public TextMeshProUGUI monsterRemaining;
     public GameObject win;
+
+    public TextMeshProUGUI time;
+
+    private int second;
+    private int minute;
     void Start()
     {
         Debug.Log(help);
@@ -23,6 +28,8 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        second = (int)Time.time % 60;
+        minute = (int)(Time.time / 60) % 60;
         if (Input.GetKeyDown(KeyCode.H))
         {
             if (help)
@@ -36,6 +43,8 @@ public class UIController : MonoBehaviour
                 help = true;
             }
         }
+
+        time.SetText("Temps en jeu: " + minute + ":" + second);
 
 
     }
