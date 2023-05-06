@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowerBase : MonoBehaviour
 {
     public LayerMask groundLayer;
-    public bool isColliding = false;
+    public bool isColliding;
     private Renderer towerbaserenderer;
     private Color originalColor;
     void Start()

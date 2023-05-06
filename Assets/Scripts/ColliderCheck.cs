@@ -25,14 +25,13 @@ public class ColliderCheck : MonoBehaviour
             if (!wellPlaced)
             {
                 Destroy(transform.parent.gameObject);
-                GameManager.AddMoney(100);
             }
         }
     }
 
     IEnumerator Placement()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         wellPlaced = true;
     }
 
