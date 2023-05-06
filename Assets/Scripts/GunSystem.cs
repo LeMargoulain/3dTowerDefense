@@ -7,6 +7,7 @@ public class GunSystem : MonoBehaviour
     public GameObject projectile;
     public Transform firingPosition;
     public Transform myCameraEyes;
+    public GameObject blood;
     public float timeBetweenShot = 0.2f, gunDamage = 1f;
     private bool readyToShoot = true;
     public GameObject muzzleFlash;
@@ -30,6 +31,7 @@ public class GunSystem : MonoBehaviour
                 if (hit.collider.tag.Equals("Enemy"))
                 {
                     hit.collider.GetComponent<EnemyHealthSystem>().StartCoroutine("TakeDamage", gunDamage);
+                    Instantiate(blood, hit.point, Quaternion.LookRotation(hit.normal));
                 }
                 firingPosition.LookAt(hit.point);
             }

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static UIController myUI;
     void Start()
     {
+        QualitySettings.vSyncCount = 1;
         money = 100;
         hp = 10;
         myUI = FindObjectOfType<UIController>();
