@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         QualitySettings.vSyncCount = 1;
-        money = 300;
+        money = 100;
         hp = 10;
         myUI = FindObjectOfType<UIController>();
         myUI.moneyText.SetText(money.ToString());
