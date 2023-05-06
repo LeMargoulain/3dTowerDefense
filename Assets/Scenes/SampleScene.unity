@@ -1911,6 +1911,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &600961727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600961729}
+  - component: {fileID: 600961728}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600961728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600961727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caca21a5a0d2f84e81e881c5d752319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 24300002, guid: 4bf2410cf78b13c4385bd98b1a182857, type: 2}
+  musicList:
+  - {fileID: 8300000, guid: d0c0dce94d1ffa14a9751185dc168501, type: 3}
+  - {fileID: 8300000, guid: 89617c091a3707f4192af3886026f154, type: 3}
+  - {fileID: 8300000, guid: 01c158baa4cfc1341b9a67b8ba88b9ba, type: 3}
+  - {fileID: 8300000, guid: 01861167f0d4bcd4ca54ed751cefeeb0, type: 3}
+  - {fileID: 8300000, guid: 8c473074e1e78f64e9da61446a83e23b, type: 3}
+  - {fileID: 8300000, guid: 754d0b4e0583702439e38d8c178b52b4, type: 3}
+--- !u!4 &600961729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600961727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.48330307, y: 4.6529474, z: -26.986378}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &625881123
 GameObject:
   m_ObjectHideFlags: 0
