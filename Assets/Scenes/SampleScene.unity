@@ -1788,7 +1788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30207002006f9994f82203c34f16bd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 7765542231872276836, guid: 77eb2b353f65746408003f1f8006ab01, type: 3}
+  projectile: {fileID: 7765542231872276836, guid: 4f528dfb7dc4c2c49b03bde61c507d23, type: 3}
   firingPosition: {fileID: 122913563}
   myCameraEyes: {fileID: 396075179}
   timeBetweenShot: 0.1
@@ -4061,7 +4061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30207002006f9994f82203c34f16bd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 7765542231872276836, guid: 77eb2b353f65746408003f1f8006ab01, type: 3}
+  projectile: {fileID: 7765542231872276836, guid: 764a87a7c9ab4fd47805610d9c0a9548, type: 3}
   firingPosition: {fileID: 1685957704}
   myCameraEyes: {fileID: 396075179}
   timeBetweenShot: 1
